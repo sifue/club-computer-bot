@@ -9,6 +9,7 @@ const client = new Twitter({
 });
 const cron = require('node-cron');
 const atCoderSender = createTweetSender('#club_computer', 'atcoder');
+const atCoderCalSender = createTweetSender('#club_computer', 'AtcoderCalendar');
 // const sifueTestSender = createTweetSender('#sifue_bot_test', 'sifue_4466'); // sifue検証用
 
 module.exports = (robot) => {
@@ -27,6 +28,7 @@ module.exports = (robot) => {
 
 function cronJob(robot) {
   atCoderSender(robot);
+  atCoderCalSender(robot);
   // sifueTestSender(robot);
 }
 
