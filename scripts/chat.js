@@ -37,17 +37,11 @@ function random(size) {
 }
 
 function sendMassage(msg) {
-  const message = `${sMsg[0][random(sMsg[0].length)]}、`
-  + `${sMsg[1][random(sMsg[1].length)]}`
-  + ` ${msg.message.user.name} ${sMsg[2][random(sMsg[2].length)]}`
-  + `\n${sMsg[3][random(sMsg[3].length)]}${sMsg[4][random(sMsg[4].length)]}`
-  + `${sMsg[5][random(sMsg[5].length)]}${sMsg[6][random(sMsg[6].length)]}`
-  + ` (https://sites.google.com/a/nnn.ed.jp/club_computer/) `
-  + `${sMsg[7][random(sMsg[7].length)]}${sMsg[8][random(sMsg[8].length)]}`
-  + `${sMsg[9][random(sMsg[9].length)]}\nもし分からない事があったら`
-  + ` ${sMsg[10][random(sMsg[10].length)]} ${sMsg[11][random(sMsg[11].length)]}`
-  + `${sMsg[12][random(sMsg[12].length)]}${sMsg[13][random(sMsg[13].length)]}`
-  msg.send(message)
+  let message = "";
+  sMsg.forEach((word) => {
+    message += word[random(word.length)];
+  });
+  msg.send(message);
 }
 
 function createTweetSender(room, screenName) {
@@ -118,6 +112,9 @@ const sMsg = [
     "このサイト",
   ],
   [
+    "(https://sites.google.com/a/nnn.ed.jp/club_computer/)",
+  ],
+  [
     "を読んだら",
     "を読めば",
     "を読むのが",
@@ -130,6 +127,9 @@ const sMsg = [
   [
     "思う",
     "思うな",
+  ],
+  [
+    "\nもし分からない事があったら",
   ],
   [
     "@deletend",
