@@ -1,6 +1,12 @@
 {
   "name": "club-computer-hubot",
   "version": "0.0.0",
+  "scripts": {
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": ["prettier --write --single-quote=true", "git add"]
+  },
   "private": true,
   "author": "sifue <yoshimura@soichiro.org>",
   "description": "Slack Hubot for #club_computer",
@@ -23,5 +29,10 @@
   },
   "engines": {
     "node": "6.11.1"
+  },
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.0",
+    "prettier": "^1.11.1"
   }
 }
