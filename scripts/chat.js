@@ -49,9 +49,13 @@ function mentionMonitoring(robot) {
   }
 }
 
-function joinningSendMessage(msg) {
-  let message = joiningMessages.join('\n');
-  msg.send(message);
+function joinningSendMessage(res) {
+  const username = res.message.user.profile.display_name;
+  const joiningMessages =
+    `${username}ちゃん、いらっしゃい。` +
+    'コンピューター部についてはこれをみてね。 ' +
+    'https://sites.google.com/a/nnn.ed.jp/club_computer/';
+  res.send(joiningMessages);
 }
 
 function callingSendMessage(msg) {
@@ -60,9 +64,9 @@ function callingSendMessage(msg) {
 
 function createTweetSender(room, screenName) {
   const tweetIdSet = new Set();
-  return function (robot) {
+  return function(robot) {
     const params = { screen_name: screenName };
-    client.get('statuses/user_timeline', params, function (
+    client.get('statuses/user_timeline', params, function(
       error,
       tweets,
       response
@@ -81,7 +85,7 @@ function createTweetSender(room, screenName) {
             if (!tweetIdSet.has(tweet.id_str)) {
               const message = `https://twitter.com/${screenName}/status/${
                 tweet.id_str
-                }`;
+              }`;
               robot.send({ room: room }, message);
               tweetIdSet.add(tweet.id_str);
             }
@@ -98,12 +102,6 @@ function createTweetSender(room, screenName) {
     });
   };
 }
-
-const joiningMessages = [
-  'ねぇ、あなたどこから来たの？',
-  'まぁ、下記のサイト読んで問題を解くのが良いかな',
-  'https://sites.google.com/a/nnn.ed.jp/club_computer/'
-];
 
 const callingMessages = [
   ['あいつ、アセンブリでよく解けるな'],
@@ -204,7 +202,7 @@ const callingMessages = [
     '一旦置いとこう、こんな所で時間かけたら目もあてられん'
   ],
   ['10 ^ 8 が1秒くらいだから3秒くらいじゃない？'][
-  ('しかし...既視感ある問題だとは思っていたけど',
+    ('しかし...既視感ある問題だとは思っていたけど',
     'まさか四尾連湖で解いたあの問題だったとは')
   ],
   ['いや、あれはDPじゃない', 'あれは...GREEDYだーっ!!']['年末は競プロかな'],
