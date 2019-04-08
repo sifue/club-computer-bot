@@ -53,7 +53,7 @@ function joinningSendMessage(res) {
   const username = res.message.user.profile.display_name;
   const joiningMessages =
     `${username}ちゃん、いらっしゃい。` +
-    'コンピューター部についてはこれをみてね。 ' +
+    'コンピュータ部についてはこれをみてね。 ' +
     'https://sites.google.com/a/nnn.ed.jp/club_computer/';
   res.send(joiningMessages);
 }
