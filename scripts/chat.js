@@ -26,6 +26,7 @@ module.exports = robot => {
   robot.enter(joinningSendMessage);
 
   robot.hear(/しまりん|志摩りん|りんちゃん/, callingSendMessage);
+  robot.hear(/A[B-Z]*|[C[D-Z]*/, reportingSendMessage);
 };
 
 function cronJob(robot) {
@@ -55,12 +56,16 @@ function joinningSendMessage(res) {
   const joiningMessages =
     `${username}さん、いらっしゃい。` +
     'コンピュータ部についてはこれをみてね。 ' +
-    'https://sites.google.com/a/nnn.ed.jp/club_computer/';
+    'https://sites.google.com/a/nnn.ed.jp/club_computer/ ' +
+    '初心者は #club_computer_競プロ初心者 作業部屋は #club_computer_精進報告 をどうぞ。';
   res.send(joiningMessages);
 }
 
 function callingSendMessage(msg) {
   msg.send(callingMessages[random(callingMessages.length)].join('\n'));
+}
+function reportingSendMessage(msg) {
+  msg.send(reportingMessages[random(reportingMessages.length)].join('\n'));
 }
 
 function createTweetSender(room, screenName) {
@@ -103,6 +108,21 @@ function createTweetSender(room, screenName) {
     });
   };
 }
+
+const reportingMessages = [
+  ['すごいな'],
+  ['成長が感じられる'],
+  ['継続が大事だね'],
+  ['できる人ってこんな感じなのかな'],
+  ['あれが解けるのか'],
+  ['うーん、わたしも頑張る'],
+  ['さすが'],
+  ['すごいね、あれどうやって解いたの？'],
+  ['簡単にとくね～、すごい'],
+  ['それどうやってやったの？'],
+  ['あれやっぱりDP？'],
+  ['わたしも精進しないとなぁ']
+];
 
 const callingMessages = [
   ['あいつ、アセンブリでよく解けるな'],
