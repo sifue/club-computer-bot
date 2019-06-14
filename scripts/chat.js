@@ -26,7 +26,7 @@ module.exports = robot => {
   robot.enter(joinningSendMessage);
 
   robot.hear(/しまりん|志摩りん|りんちゃん/, callingSendMessage);
-  robot.hear(/AB[C-Z]+|C[D-Z]+|D[E-Z]+|Cのみ|Dのみ/, reportingSendMessage);
+  robot.hear(/AB[C-F]+|C[D-F]+|D[E-F]+|Cのみ|Dのみ/, reportingSendMessage);
 };
 
 function cronJob(robot) {
